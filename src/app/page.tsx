@@ -24,11 +24,19 @@ export default function Home() {
     }
   }, [advocates.status]);
 
+  // A good tip with React is to make your application responsive to changes in state.
+  // Here we are using the useEffect hook to filter the advocates whenever the search term changes.
+  // But we also updated it to re-filter when the data is refreshed
+  useEffect(() => {
+    if (advocates.status === FetchStatus.SUCCESS) {
+      filter(searchTerm);
+    }
+  }, [searchTerm, advocates.status, filter]);
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTermInput = e.target.value;
 
     setSearchTerm(searchTermInput);
-    filter(searchTermInput);
   };
 
   const onClick = () => {
