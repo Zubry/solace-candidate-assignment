@@ -42,4 +42,7 @@ First things first, let's fix up basic linting errors, TypeScript errors, and ge
 1. Now that the frontend has been cleaned up, we will focus on improving the backend.
 2. We did a great thing of having a working backend first, which allowed us to make a bunch of improvements to the FE without being blocked by backend work
 3. The first improvement to make is pagination and limiting payloads...this is a huge deal and you never want to see an app without these. We will add pagination options and enforce a hard limit of 100 records per api request
+4. Next, we split "route.js" into 3 more files: a controller (handles client communications), a service (handles business logic), and a repository (handles persistence)
+5. This enabled us to test our app much more easily
+   1. A common excuse for a lack of testing is "everything is so intertwined". Well, now it isn't. Even if we theoretically had difficult testing the database or API, we still have tests of our business logic in the service file. In this case, we don't do much except calculate the cursor (which could become middleware in the future) but business logic will balloon as the project becomes more mature
   
