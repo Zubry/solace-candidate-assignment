@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const searchParams = url.searchParams;
 
   const cursor = parseInt(searchParams.get("cursor") ?? "", 10);
-  const limit = Math.min(parseInt(searchParams.get("limit") ?? "10"), 10);
+  const limit = Math.min(parseInt(searchParams.get("limit") ?? "100"), 100);
 
   let query = db.select().from(advocates).limit(limit).offset(0);
 

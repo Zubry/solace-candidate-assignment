@@ -9,7 +9,10 @@ type UseAdvocatesState = {
   error: string | null;
 };
 
-export function useAdvocates() {
+export function useAdvocates(
+  cursor: number = 0,
+  limit: number = 100
+): UseAdvocatesState {
   const [state, setState] = useState<UseAdvocatesState>({
     advocates: [],
     status: FetchStatus.INITIAL,
@@ -24,7 +27,11 @@ export function useAdvocates() {
           status: FetchStatus.LOADING,
           error: null,
         }));
-        const response = await fetch("/api/advocates");
+
+        const queryParams = `cursor=${cursor}&limit=${limit}`;
+        const url = `/api/advocates?${queryParams}`;
+
+        const response = await fetch(url);
 
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
