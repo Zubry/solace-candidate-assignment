@@ -9,3 +9,12 @@ First things first, let's fix up basic linting errors, TypeScript errors, and ge
 3. Fix runtime typing errors - Currently, these are runtime errors instead of compile-time errors, which we will fix shortly, but it's important to make sure the app is functional after each PR
    1. yearsOfExperience is a number but we call includes on it
    2. We will convert this to a string for now, but you can see how this whole functionality is weird
+
+## Reorganize & Utilize TypeScript on the frontend
+
+1. Reorganize FE code to support modularization and separation of concerns -- Right now, React does everything (!!!). We want React to be the view layer, with everything else pulled out as much as possible
+   1. Create a frontend directory to keep it separate from API
+   2. Create an "advocates" feature directory
+      1. This will store code specific to the advocates feature
+   3. Create a "components" directory
+      1. This will store generic, shared components such as the search bar

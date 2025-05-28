@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { SearchBar } from "./frontend/components/SearchBar";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -46,14 +47,11 @@ export default function Home() {
       <h1>Solace Advocates</h1>
       <br />
       <br />
-      <div>
-        <p>Search</p>
-        <p>
-          Searching for: <span>{searchTerm}</span>
-        </p>
-        <input style={{ border: "1px solid black" }} onChange={onChange} />
-        <button onClick={onClick}>Reset Search</button>
-      </div>
+      <SearchBar
+        searchTerm={searchTerm}
+        onChange={onChange}
+        onReset={onClick}
+      />
       <br />
       <br />
       <table>
