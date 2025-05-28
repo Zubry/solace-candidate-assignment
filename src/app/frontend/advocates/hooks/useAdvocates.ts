@@ -7,6 +7,7 @@ type UseAdvocatesState = {
   advocates: Advocate[];
   status: FetchStatus;
   error: string | null;
+  nextCursor?: number | null;
 };
 
 export function useAdvocates(
@@ -37,8 +38,14 @@ export function useAdvocates(
           throw new Error(`Error: ${response.statusText}`);
         }
 
-        const { data } = (await response.json()) as AdvocateResponse;
-        setState({ advocates: data, status: FetchStatus.SUCCESS, error: null });
+        const { data, nextCursor } =
+          (await response.json()) as AdvocateResponse;
+        setState({
+          advocates: data,
+          nextCursor: nextCursor,
+          status: FetchStatus.SUCCESS,
+          error: null,
+        });
       } catch (error) {
         setState({
           advocates: [],
@@ -48,7 +55,7 @@ export function useAdvocates(
       }
     };
     fetchData();
-  }, []);
+  }, [cursor, limit]);
 
   return state;
 }
