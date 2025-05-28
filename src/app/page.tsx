@@ -12,7 +12,7 @@ export default function Home() {
   const advocates = useAdvocates() ?? [];
   const { filteredAdvocates, filter, reset } = useFilteredAdvocates(advocates);
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTermInput = e.target.value;
 
     setSearchTerm(searchTermInput);

@@ -1,4 +1,8 @@
-export function AdvocatesTable({ advocates }) {
+import { Advocate } from "../types/Advocate";
+
+export function AdvocatesTable({
+  advocates,
+}: Readonly<{ advocates: Advocate[] }>) {
   return (
     <table>
       <thead>

@@ -17,7 +17,12 @@ First things first, let's fix up basic linting errors, TypeScript errors, and ge
    2. Create an "advocates" feature directory
       1. This will store code specific to the advocates feature
       2. The first thing we did was separate out our request logic (hitting the advocates api) as well as our business logic (filtering)
+      3. Next, we pulled out the table into its own component
    3. Create a "components" directory
       1. This will store generic, shared components such as the search bar
       2. Note that I'm not changing any functionality here. We don't have tests so we don't want to. If you don't have tests, goal #1 needs to be to make your code testable
-   4. 
+2. Implement basic TS types
+   1. Added an Advocate type to handle our domain object
+   2. Added an AdvocateResponse type to handle the fact that we load this over a network
+
+

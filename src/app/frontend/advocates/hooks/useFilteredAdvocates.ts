@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
+import { Advocate } from "../types/Advocate";
 
-export function useFilteredAdvocates(advocates) {
-  const [filteredAdvocates, setFilteredAdvocates] =
-    useState(advocates);
-  
+export function useFilteredAdvocates(advocates: Advocate[]) {
+  const [filteredAdvocates, setFilteredAdvocates] = useState(advocates);
+
   useEffect(() => {
     if (advocates) {
       setFilteredAdvocates(advocates);
