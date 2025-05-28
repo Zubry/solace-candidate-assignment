@@ -35,3 +35,4 @@ First things first, let's fix up basic linting errors, TypeScript errors, and ge
 1. User experience is important, but we also don't want to get carried away since this is supposed to be a small project. As a result, we will focus on low effort/high impact features. Some examples:
    1. Reset user input after searching
    2. Add loading and error states
+2. Now that we are expanding functionality, we can update tests along the way and make sure it works
