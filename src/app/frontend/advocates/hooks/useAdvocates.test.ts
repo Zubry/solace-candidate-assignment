@@ -30,7 +30,9 @@ describe("useAdvocates", () => {
     expect(result.current.advocates).toEqual(mockData);
     expect(result.current.error).toBeNull();
 
-    expect(global.fetch).toHaveBeenCalledWith("/api/advocates");
+    expect(global.fetch).toHaveBeenCalledWith(
+      "/api/advocates?cursor=0&limit=100"
+    );
   });
 
   it("returns handles errors", async () => {
@@ -53,6 +55,25 @@ describe("useAdvocates", () => {
 
     expect(result.current.status).toEqual("error");
 
-    expect(fetch).toHaveBeenCalledWith("/api/advocates");
+    expect(fetch).toHaveBeenCalledWith("/api/advocates?cursor=0&limit=100");
+  });
+
+  it("supports cursor pagination", async () => {
+    const mockData = [{ id: 1, name: "Test" }];
+
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve({ data: mockData }),
+    });
+
+    renderHook(() => useAdvocates(10, 50));
+
+    await act(async () => {
+      await Promise.resolve();
+    });
+
+    expect(global.fetch).toHaveBeenCalledWith(
+      "/api/advocates?cursor=10&limit=50"
+    );
   });
 });

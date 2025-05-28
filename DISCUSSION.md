@@ -41,4 +41,5 @@ First things first, let's fix up basic linting errors, TypeScript errors, and ge
 
 1. Now that the frontend has been cleaned up, we will focus on improving the backend.
 2. We did a great thing of having a working backend first, which allowed us to make a bunch of improvements to the FE without being blocked by backend work
+3. The first improvement to make is pagination and limiting payloads...this is a huge deal and you never want to see an app without these. We will add pagination options and enforce a hard limit of 100 records per api request
   
