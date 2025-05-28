@@ -25,4 +25,13 @@ First things first, let's fix up basic linting errors, TypeScript errors, and ge
    1. Added an Advocate type to handle our domain object
    2. Added an AdvocateResponse type to handle the fact that we load this over a network
 
+## Add testing
 
+1. Far and away the biggest problems I see in frontend repositories is the lack of tests. Because the frontend is so visual, people tend to write off tests as unimportant, but the same rules apply to FE as they do to every other software project. If you don't have tests, you have bugs. If you can't write tests, your code isn't written properly
+2. We will set up some testing using jest and react-testing-library, which are tools I've had a ton of success with
+
+## Add basic features to improve user experience
+
+1. User experience is important, but we also don't want to get carried away since this is supposed to be a small project. As a result, we will focus on low effort/high impact features. Some examples:
+   1. Reset user input after searching
+   2. Add loading and error states
