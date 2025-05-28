@@ -19,9 +19,7 @@ export function AdvocatesTable({
       <tbody>
         {advocates.map((advocate) => {
           return (
-            <tr
-              key={`${advocate.firstName}-${advocate.lastName}-${advocate.phoneNumber}`}
-            >
+            <tr key={advocate.id}>
               <td>{advocate.firstName}</td>
               <td>{advocate.lastName}</td>
               <td>{advocate.city}</td>

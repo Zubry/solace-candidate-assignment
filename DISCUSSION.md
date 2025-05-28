@@ -36,3 +36,9 @@ First things first, let's fix up basic linting errors, TypeScript errors, and ge
    1. Reset user input after searching
    2. Add loading and error states
 2. Now that we are expanding functionality, we can update tests along the way and make sure it works
+
+## Backend work (with FE integration)
+
+1. Now that the frontend has been cleaned up, we will focus on improving the backend.
+2. We did a great thing of having a working backend first, which allowed us to make a bunch of improvements to the FE without being blocked by backend work
+  
