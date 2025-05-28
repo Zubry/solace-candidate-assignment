@@ -1,45 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SearchBar } from "./frontend/components/SearchBar";
+import { useAdvocates } from "./frontend/advocates/hooks/useAdvocates";
+import { useFilteredAdvocates } from "./frontend/advocates/hooks/useFilteredAdvocates";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [advocates, setAdvocates] = useState([]);
-  const [filteredAdvocates, setFilteredAdvocates] = useState([]);
 
-  useEffect(() => {
-    console.log("fetching advocates...");
-    fetch("/api/advocates").then((response) => {
-      response.json().then((jsonResponse) => {
-        setAdvocates(jsonResponse.data);
-        setFilteredAdvocates(jsonResponse.data);
-      });
-    });
-  }, []);
+  const advocates = useAdvocates() ?? [];
+  const { filteredAdvocates, filter, reset } = useFilteredAdvocates(advocates);
 
   const onChange = (e) => {
     const searchTermInput = e.target.value;
 
-    console.log("filtering advocates...");
-    const filteredAdvocates = advocates.filter((advocate) => {
-      return (
-        advocate.firstName.includes(searchTermInput) ||
-        advocate.lastName.includes(searchTermInput) ||
-        advocate.city.includes(searchTermInput) ||
-        advocate.degree.includes(searchTermInput) ||
-        advocate.specialties.includes(searchTermInput) ||
-        advocate.yearsOfExperience.toString().includes(searchTermInput)
-      );
-    });
-
-    setFilteredAdvocates(filteredAdvocates);
     setSearchTerm(searchTermInput);
+    filter(searchTermInput);
   };
 
   const onClick = () => {
-    console.log(advocates);
-    setFilteredAdvocates(advocates);
+    reset();
   };
 
   return (
