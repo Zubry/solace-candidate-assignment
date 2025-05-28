@@ -1,4 +1,26 @@
-# Solace Application Recommended Improvements
+# Future improvements
+
+While this project has come a long way in just a few hours, here are some improvements that I would recommend going forward:
+
+## Backend
+
+1. Authentication/Authorization -- This is the biggest thing that I left off of my work. To me, auth is a day 1 concern and needs to be implemented well from the start, even if we just sign in with Google and have admin/user roles. This would've brought us well over the scope of this project, but you really need to implement auth very early on in a project.
+2. Improved error handling -- There isn't much error handling going on here because it is just a select from a database, but adding domain errors and mapping database errors to something the client can understand is very important
+3. Improved user input handling -- I hacked this together with some vanilla JS to avoid crashes and logical errors, but we should setup Zod or something similar to validate our payloads. We should also create a concept of DTOs, or data transfer objects, to improve the coordination between backend and frontend.
+4. Caching and delimiting -- It's important to project against malicious users or just people spamming buttons. Setting up delimiting in AWS and caching via Redis early on can save some big headaches later on. It really helps to do this stuff early since devs tend to "borrow" code from other places when implementing new features.
+5. Improved search -- I've learned over the years that Postgres can struggle a bit with large searches like this one. I would love to copy data over to ElasticSearch and utilize their full text search + powerful query API to supercharge this application
+6. Improved logging and monitoring -- Other than a couple console logs, this app does not have much logging. This isn't super useful during development because we use the debugger, but in prod, we won't have a debugger. Adding a logging library and connecting to a platform such as DataDog and setting up monitors and health checks is huge
+7. Documentation -- We need to setup OpenAPI or some other way of documenting endpoints
+
+## Frontend
+
+1. Continue extracting logic from Page.jsx -- This got a little bloated as I got close to the deadline, but we can extract and test a ton of the code here. With a good 1 hour session, we could really clean this up and improve the quality of the app
+2. CSS -- I left the CSS untouched since I wanted to focus on development patterns rather than just making it pretty, but this app desperately needs a touch of paint. Responsiveness is a big deal here as well.
+3. General performance improvements -- Because this is a small app, there are no real performance issues, but nevertheless, we would ideally set the tone for future development. Some examples include: use an IntersectionObserver to launch the HTTP request when the component comes into view, use a virtual table to avoid rendering off-screen elements, and run the profiler to check for unnecessary renders
+4. Documentation -- We should set up Storybook to document our components
+5. Most importantly: we need to make the page accessible. If it is not accessible, then that means there are people who cannot use our app. Imagine if someone is using our platform to get help for a disability, but they can't because our app isn't accessible!
+
+# Application improvement walkthrough
 
 ## 1. Fix basic errors in initial React app
 
@@ -45,4 +67,3 @@ First things first, let's fix up basic linting errors, TypeScript errors, and ge
 4. Next, we split "route.js" into 3 more files: a controller (handles client communications), a service (handles business logic), and a repository (handles persistence)
 5. This enabled us to test our app much more easily
    1. A common excuse for a lack of testing is "everything is so intertwined". Well, now it isn't. Even if we theoretically had difficult testing the database or API, we still have tests of our business logic in the service file. In this case, we don't do much except calculate the cursor (which could become middleware in the future) but business logic will balloon as the project becomes more mature
-  
