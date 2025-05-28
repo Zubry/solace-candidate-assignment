@@ -10,10 +10,10 @@ import { Advocate } from "./frontend/advocates/types/Advocate";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [cursor, setCursor] = useState<number>(0);
+  const [cursor, setCursor] = useState<number | null>(0);
   const [limit] = useState(3); // We will set this as state since we may manipulate it later
 
-  const advocates = useAdvocates(cursor, limit);
+  const advocates = useAdvocates(cursor ?? 0, limit);
   const [allAdvocates, setAllAdvocates] = useState<Advocate[]>([]);
   const { filteredAdvocates, filter, reset } =
     useFilteredAdvocates(allAdvocates);
